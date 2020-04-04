@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- <style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: #ff0000;
+    }
+</style> -->
 <body>
     <div id="app">
         <h2>Eventos Inline</h2>
@@ -18,6 +25,9 @@
         
         <h2>Lidando com Elementos</h2>
         <input type="text" name="telefone" id="telefone">
+
+        <h2>Alterando Estilo</h2>
+        <div class="box"></div>
     </div>
     <script>
         function mostraAlerta(mensagem) {
@@ -44,7 +54,13 @@
         containerElement.appendChild(linkElement);
 
         var inputElement3 = document.querySelector('#telefone');
-        containerElement.removeChild(inputElement3);
+        // containerElement.removeChild(inputElement3);
+
+        var boxElement = document.querySelector('.box');
+        
+        boxElement.style.width = 100;
+        boxElement.style.height = 100;
+        boxElement.style.backgroundColor = '#ff0000'; 
     </script>
 </body>
 </html>

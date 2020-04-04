@@ -14,8 +14,10 @@
 
         <h2>Trabalhando com a DOM</h2>
         <input type="text" name="nome" id="nome">
+        <button class="botao">Adicionar</button>
+        
+        <h2>Lidando com Elementos</h2>
         <input type="text" name="telefone" id="telefone">
-        <button class="botao">Adicionar</butelefonetton>
     </div>
     <script>
         function mostraAlerta(mensagem) {
@@ -31,6 +33,18 @@
             var text = inputElement1.value;
             alert(text);
         }
+
+        var linkElement = document.createElement('a');
+        linkElement.setAttribute('href', 'https://rocketseat.com.br');
+        linkElement.setAttribute('title', 'Site da Rocketseat');
+        var textElement = document.createTextNode('Acessar site da Rocketseat.');
+        linkElement.appendChild(textElement);
+
+        var containerElement = document.querySelector('#app');
+        containerElement.appendChild(linkElement);
+
+        var inputElement3 = document.querySelector('#telefone');
+        containerElement.removeChild(inputElement3);
     </script>
 </body>
 </html>

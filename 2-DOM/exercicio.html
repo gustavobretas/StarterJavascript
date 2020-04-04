@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .exercicio1 {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<body>
+    <div id="app">
+        <button id="botao">Criar Elemento Div</button>
+    </div>
+    <script>
+
+    var botao = document.querySelector('button#botao');
+        botao.onclick = function () {
+            var divElement = document.createElement('div');
+            divElement.style.backgroundColor = "#f00000"
+            divElement.style.width = 100;
+            divElement.style.height = 100;
+            divElement.setAttribute('class', 'exercicio1')
+
+            var containerElement = document.querySelector('#app');
+            containerElement.appendChild(divElement);
+
+        }        
+
+    </script>
+</body>
+</html>

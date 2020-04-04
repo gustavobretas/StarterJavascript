@@ -10,5 +10,5 @@ var usuarios = [
 ];
 
 for (usuario of usuarios) {
-    console.log(`O %s possui as habilidades: %s`, usuario.nome, usuario.habilidades.toString());
+    console.log(`O %s possui as habilidades: %s`, usuario.nome, usuario.habilidades.join(', '));
 }

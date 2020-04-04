@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocketseat - Curso Javascript</title>
+</head>
+<body>
+    <h1>Hello Word</h1>
+    <h3>Abra o Innspetor de Elementos</h3>
+    <div id="app">
+        <button onclick="mostraAlerta()">Me pressione</button>
+        <input type="text" onkeypress="mostraAlerta()">
+    </div>
+    <script>
+        console.log("Hello Word");
+        //
+        var nome = 2
+        console.log("Tipagem Dinâmica: " + nome);
+        nome = "Gustavo";
+        console.log("nome:" + nome);
+        //
+        var idade = 35;
+        console.log("idade: " + idade);
+        var peso = 104;
+        console.log("peso: " + peso);
+        var humano = true;
+        console.log("humano: " + humano);
+        
+        var alunos = ["Gustavo", "Gabriel", "Lucas"];
+        console.log("alunos: " + alunos);
+        
+        var aluno = {
+            nome: "Gustavo",
+            idade: 35,
+            peso: 104,
+            humano: true
+        };
+        console.log(aluno);
+        console.log(aluno.nome);
+
+        var x = 10, y = 5;
+        var resultado = x + y;
+        console.log(x,y,resultado);
+        resultado = x % y;
+        console.log(x,y,resultado);
+        x = x + 3;
+        console.log(x);
+        x -= 3;
+        console.log(x);
+        
+        function soma (numero1, numero2) {
+            var resultado = numero1 + numero2;
+            return resultado;
+        }
+        console.log(soma(1, 2))
+        console.log(soma("Hello", "World"))
+
+        function retornaSexoWithIf(sexo){
+            // M, F
+            // Masculino, Feminino
+            if (sexo == 'M') {
+                return "Masculino"
+            } else if (sexo == 'F') {
+                return "Feminino"
+            } else {
+                return "Outro"
+            }
+            
+        }
+        console.log(retornaSexoWithIf('M'))
+        console.log(retornaSexoWithIf('F'))
+
+        function retornaSexoWithCase(sexo){
+            // M, F
+            // Masculino, Feminino
+            switch (sexo) {
+                case 'M':
+                    return 'Masculino';
+                case 'F':
+                    return 'Feminino';
+                default:
+                    return 'Outro';
+            }            
+        }
+        console.log(retornaSexoWithCase('M'))
+        console.log(retornaSexoWithCase('F'))
+
+        var sexo = 'M', idade = 35;
+        if (sexo === 'M' || idade >= 18) {
+            console.log('OK')
+        }
+        if (sexo != 'F') {
+            console.log('M')
+        }
+
+        var sexo = 'M';
+        if (sexo === 'M') {
+            console.log('Masculino');
+        } else {
+            console.log('Feminino');
+        }
+
+        var retorno = (sexo === 'F') ? 'Masculino' : 'Feminino';
+        console.log(retorno)
+
+        for (var i = 0; i <= 50; i++){
+            console.log(i);
+        }
+
+        var j = 219345872;
+        while (j > 50) {
+            console.log(j);
+            j /= 5;
+        }
+
+        function exibeAlgo(){
+            console.log('Hello World');
+        }
+
+        setInterval(exibeAlgo(), 1000, 5000);
+
+        function mostraAlerta() {
+            alert("Botão foi Clicado!");
+        }
+    </script>
+</body>
+</html>

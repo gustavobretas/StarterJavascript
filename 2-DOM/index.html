@@ -7,13 +7,29 @@
 </head>
 <body>
     <div id="app">
+        <h2>Eventos Inline</h2>
         <button onclick="mostraAlerta('Botão foi Clicado!')">Me Pressione</button>
         <button onmouseover="mostraAlerta('Mouse sobre o botão!')">Passe o Mouse Sobre</button>
         <input type="text" onkeypress="mostraAlerta('Tecla precionada!')">
+
+        <h2>Trabalhando com a DOM</h2>
+        <input type="text" name="nome" id="nome">
+        <input type="text" name="telefone" id="telefone">
+        <button class="botao">Adicionar</butelefonetton>
     </div>
     <script>
         function mostraAlerta(mensagem) {
             alert(mensagem)
+        }
+        var inputElement1 = document.querySelector('input[name=nome]');
+        var inputElement2 = document.getElementById('nome');
+        console.log(inputElement1)
+        console.log(inputElement2)
+
+        var btnElement = document.querySelector('button.botao');
+        btnElement.onclick = function() {
+            var text = inputElement1.value;
+            alert(text);
         }
     </script>
 </body>

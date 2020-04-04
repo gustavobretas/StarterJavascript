@@ -1,35 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
-    .exercicio1 {
-        width: 100px;
-        height: 100px;
-    }
-</style>
-<body>
+  </head>
+  <style>
+    /* .exercicio1 {
+      width: 100px;
+      height: 100px;
+    } */
+  </style>
+  <body>
     <div id="app">
-        <button id="botao">Criar Elemento Div</button>
+      <button id="botao">Criar Elemento Div</button>
     </div>
     <script>
+        var i = 0;
+      var botao = document.querySelector("button#botao");
+      botao.onclick = function () {
+        var divElement = document.createElement("div");
+        // divElement.style.backgroundColor = "#f00000";
+        // divElement.style.width = 100;
+        // divElement.style.height = 100;
+        // Não sei por que, mas ao tentar alterar as propriedade diretamente no atrubito, não funcionou.
+        divElement.setAttribute("style", "width:100px;height:100px;background-color:#f00000");
+        divElement.setAttribute("id", "div"+i);
+        divElement.setAttribute("onmouseover", "divMouseOver(id)");
+        
+        document.querySelector("#app").appendChild(divElement);
+        i++;
+      };
 
-    var botao = document.querySelector('button#botao');
-        botao.onclick = function () {
-            var divElement = document.createElement('div');
-            divElement.style.backgroundColor = "#f00000"
-            divElement.style.width = 100;
-            divElement.style.height = 100;
-            divElement.setAttribute('class', 'exercicio1')
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      };
 
-            var containerElement = document.querySelector('#app');
-            containerElement.appendChild(divElement);
-
-        }        
+      function divMouseOver (id) {
+          var divElement = document.getElementById(id);
+            console.log(divElement)
+          divElement.style.backgroundColor = getRandomColor();
+      };
 
     </script>
-</body>
+  </body>
 </html>

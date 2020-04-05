@@ -9,13 +9,27 @@ var todos = [
 ];
 
 function renderToDos() {
+    listElement.innerHTML = '';
+    
     for (todo of todos) {
         var todoElement = document.createElement('li');
         var todoText = document.createTextNode(todo);
-        
+
         todoElement.appendChild(todoText);
         listElement.appendChild(todoElement);
     }
 }
 
 renderToDos()
+
+function addTodo() {
+    var todoText = inputElement.value;
+    
+    todos.push(todoText);
+    inputElement.Value = '';
+
+    renderToDos();
+
+}
+
+btnElement.onclick = addTodo;

@@ -7,10 +7,11 @@
   </head>
   <style>
   </style>
-  <body>
+  <body onload="carregaLista()">
     <div id="app" @after-appear="carregaLista()">
       <button id="botao">Criar Elemento Div</button>
-      <button onclick="carregaLista()">Lista</button>
+      <input type="text" name="nome">
+      <button onclick="adicionar()">Adicionar</button>
     </div>
     <script>
       var i = 0;
@@ -40,7 +41,6 @@
 
       function divMouseOver(id) {
         var divElement = document.getElementById(id);
-        console.log(divElement)
         divElement.style.backgroundColor = getRandomColor();
       };
 
@@ -48,16 +48,24 @@
 
         var nomes = ["Gustavo", "Diego", "Gabriel", "Lucas"];
         var ulElement = document.createElement('ul');
-        var ilElement;
+        var liElement;
 
         for (nome of nomes) {
-          console.log(nome);
-          ilElement = document.createElement('li');
-          ilElement.innerHTML = nome;
-          ulElement.appendChild(ilElement);
+          liElement = document.createElement('li');
+          liElement.innerHTML = nome;
+          ulElement.appendChild(liElement);
         }
 
         document.querySelector('#app').appendChild(ulElement);
+      }
+
+      function adicionar() {
+        if (document.querySelector('input[name=nome]').value.trim() != '') {
+          var liElement = document.createElement('li');
+          liElement.innerHTML = document.querySelector('input[name=nome]').value;
+          document.querySelector('ul').appendChild(liElement);
+          document.querySelector('input[name=nome]').value = '';
+        }
       }
     </script>
   </body>

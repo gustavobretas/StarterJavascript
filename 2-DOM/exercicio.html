@@ -6,17 +6,14 @@
     <title>Document</title>
   </head>
   <style>
-    /* .exercicio1 {
-      width: 100px;
-      height: 100px;
-    } */
   </style>
   <body>
-    <div id="app">
+    <div id="app" @after-appear="carregaLista()">
       <button id="botao">Criar Elemento Div</button>
+      <button onclick="carregaLista()">Lista</button>
     </div>
     <script>
-        var i = 0;
+      var i = 0;
       var botao = document.querySelector("button#botao");
       botao.onclick = function () {
         var divElement = document.createElement("div");
@@ -25,9 +22,9 @@
         // divElement.style.height = 100;
         // Não sei por que, mas ao tentar alterar as propriedade diretamente no atrubito, não funcionou.
         divElement.setAttribute("style", "width:100px;height:100px;background-color:#f00000");
-        divElement.setAttribute("id", "div"+i);
+        divElement.setAttribute("id", "div" + i);
         divElement.setAttribute("onmouseover", "divMouseOver(id)");
-        
+
         document.querySelector("#app").appendChild(divElement);
         i++;
       };
@@ -41,12 +38,27 @@
         return color;
       };
 
-      function divMouseOver (id) {
-          var divElement = document.getElementById(id);
-            console.log(divElement)
-          divElement.style.backgroundColor = getRandomColor();
+      function divMouseOver(id) {
+        var divElement = document.getElementById(id);
+        console.log(divElement)
+        divElement.style.backgroundColor = getRandomColor();
       };
 
+      function carregaLista() {
+
+        var nomes = ["Gustavo", "Diego", "Gabriel", "Lucas"];
+        var ulElement = document.createElement('ul');
+        var ilElement;
+
+        for (nome of nomes) {
+          console.log(nome);
+          ilElement = document.createElement('li');
+          ilElement.innerHTML = nome;
+          ulElement.appendChild(ilElement);
+        }
+
+        document.querySelector('#app').appendChild(ulElement);
+      }
     </script>
   </body>
 </html>

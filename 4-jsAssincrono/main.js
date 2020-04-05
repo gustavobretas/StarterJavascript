@@ -32,32 +32,51 @@ document.getElementById('verificarIdade').onclick = function () {
         });    
 };
 
-function addUsuario(username) {
-    function addRepos(repos){
-        var h2Element = document.createElement('h2');
-        h2Element.innerHTML = username;
-        document.getElementById('app').appendChild(h2Element);
-        var ulElement = document.createElement('ul');
-        for (repo of repos) {
-            var liElement = document.createElement('li');
-            var aElement = document.createElement('a');
-            aElement.setAttribute('href', repo.html_url)
-            aElement.innerHTML = repo.name;
-            liElement.appendChild(aElement);
-            ulElement.appendChild(liElement);
-            document.getElementById('app').appendChild(ulElement);
-        }
+function addRepos(repos){
+    var ulElement = document.createElement('ul');
+    for (repo of repos) {
+        var liElement = document.createElement('li');
+        var aElement = document.createElement('a');
+        aElement.setAttribute('href', repo.html_url)
+        aElement.innerHTML = repo.name;
+        liElement.appendChild(aElement);
+        ulElement.appendChild(liElement);
+        document.getElementById('app').appendChild(ulElement);
     }
-    axios.get('https://api.github.com/users/'+username+'/repos')
-        .then(function(response) {
-            addRepos(response.data);
-        })
-        .catch(function(error) {
-            console.warn(error)
-        });
+}
+
+function addUsuario(username) {
+    return new Promise(function(resolve, reject) {
+        axios.get('https://api.github.com/users/'+username+'/repos')
+            .then(function(response) {
+                if (response.data.length > 0) {
+                    var h2Element = document.createElement('h2');
+                    h2Element.innerHTML = username;
+                    document.getElementById('app').appendChild(h2Element);
+                    resolve(response.data);
+                } else {
+                    reject(response)
+                }
+            })
+            .catch(function(error) {
+                reject(error);
+            });
+    });
 };
 
 document.getElementById('btnAddUsuario').onclick = function () {
-    addUsuario(document.getElementById('inputUsuario').value);
-    document.getElementById('inputUsuario').value = '';
+    var divLoader = document.createElement('div');
+    divLoader.setAttribute('class', 'loader');
+    document.getElementById('app').appendChild(divLoader);
+    addUsuario(document.getElementById('inputUsuario').value)
+        .then(function(response){
+            addRepos(response);
+            document.getElementById('app').removeChild(divLoader);
+            document.getElementById('inputUsuario').value = '';
+        })
+        .catch(function(error) {
+            alert('Usuário não Encontrado.')
+            document.getElementById('app').removeChild(divLoader);
+        });
 }
+
